@@ -1,7 +1,14 @@
 extends layout
 
 block content
-	.container
-		h1 Applicants
-		ul#applications.list-unstyled
-			li Applicants should go here.
+	h1 Applicants
+	ul#applications.list-unstyled
+		for applicant in applicants
+			li.applicant(id='#{applicant._id}')
+				h4 Name: #{applicant.name}
+					a.delete-btn.btn.btn-xs.btn-danger(href="/delete/#{applicant._id}") Delete
+				div.applicant-info
+					p Bio: #{applicant.bio}
+					p Skills: #{applicant.skills}
+					p Years Experience: #{applicant.years}
+					p Reason for Applying: #{applicant.why}

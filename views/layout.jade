@@ -1,10 +1,39 @@
 doctype html
 html
-  head
-    title= title
-    link(rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css")
-    link(rel='stylesheet' href='/stylesheets/style.css')
-  body
-    block content
-    script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js")
-    script(src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js")
+	head
+		title= title
+		link(rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css")
+		link(rel='stylesheet' href='/stylesheets/style.css')
+	body
+		nav.navbar.navbar-default
+			div.container-fluid
+				ul.nav.navbar-nav
+					li: a(href="/") Home
+					li: a(href="/application") Apply Here!
+					li: a(href="/applicants") Applicants
+				ul.nav.navbar-nav.navbar-right
+					li: a(href="#" data-toggle="modal" data-target=".sign-in-modal") Sign In
+
+		.modal.fade.sign-in-modal(tabindex="-1" role="dialog" aria-labelledby="signInModal" aria-hidden="true")
+			.modal-dialog.modal-lg
+				.modal-content
+					.modal-header
+						button.close#close-sign-in(type="button" data-dismiss="modal" aria-hidden="true") &times;
+						h4.modal-title Sign In 
+							button.btn.btn-default.btn-xs#sign-up-btn Sign Up
+					.modal-body
+						form#sign-in-form(role="form")
+							.form-group
+								label(for="username") Username
+								input#username.form-control(type="text" placeholder="Username")
+							.form-group
+								label(for="password") Password
+								input#password.form-control(type="password" placeholder="Password")
+						.modal-footer
+							a.btn.btn-primary#sign-in-btn(href="/user") Sign In
+
+		.container
+			block content
+		script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+		script(src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js")
+		script(src="/js/main.js")

@@ -1,7 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var Applicant = require('./models/applicant.js');
+var ApplicantController = require('./controllers/applicant.js');
+var UserController = require('./controllers/user.js');
 
 mongoose.connect('mongodb://localhost/omega3');
 
@@ -15,13 +16,31 @@ app.get('/', function(req, res) {
 	res.render('index');
 });
 
-// displays a list of applicants
-app.get('/applicants', function(req, res){
-	res.render('applicants');
+// application page
+app.get('/application', function(req, res) {
+	res.render('application');
 });
 
-// creates and applicant
-app.post('/applicant', );
+// displays a list of applicants
+app.get('/applicants', ApplicantController.showApplicants);
+
+// creates an applicant
+app.post('/applicants', ApplicantController.createApplicant);
+
+//
+app.get('/applicants/:userid', ApplicantController.showApplicants);
+
+// deletes an applicant
+app.get('/delete/:applicantID', ApplicantController.deleteApplicant);
+
+// creates a user
+app.post('/user', UserController.createUser);
+
+// // sign in
+// app.get('/user', UserController.createUser);
+
+
+
 
 var server = app.listen(3000, function() {
 	console.log('Express server listening on port ' + server.address().port);
